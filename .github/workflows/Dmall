@@ -1,0 +1,19 @@
+const Discord = require("discord.js")
+
+module.exports.run = async (bot, message, args) => {
+    if(message.author.id != "669620537320013825" && message.author.id != "350690201267339269") return message.channel.send("🚫 ACCES DENIED 🚫")
+    const text = args.join(" ");
+    if(!text) return message.reply("baga wai un mesaj, sa trimit acele dmuri....")
+    let msg = await message.channel.send("Gata! Trimis in acest moment DM-urile");
+    message.delete();
+    message.guild.members.forEach(member => {
+        if (member.id != bot.user.id && !member.user.bot) member.send(text);
+      });
+      message.author.send("Gata! Am trimis la toata lumea mesajul `" + text + "` !") 
+
+    msg.delete(1500);
+    }
+  
+  module.exports.help = {
+  name: "dm"
+}
